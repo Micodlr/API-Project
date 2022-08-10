@@ -1,10 +1,19 @@
 const router = require("express").Router();
+const sessionRouter = require("./session");
+const usersRouter = require("./users");
 const { restoreUser } = require("../../utils/auth.js");
 
 // router.post("/test", function (req, res) {
 //   res.json({ requestBody: req.body });
 // });
 router.use(restoreUser);
+
+router.use("/session", sessionRouter);
+router.use("/users", usersRouter);
+
+router.post("/test", (req, res) => {
+  res.json({ requestBody: req.body });
+});
 
 // router.get("/restore-user", (req, res) => {
 //   return res.json(req.user);
@@ -28,5 +37,7 @@ router.use(restoreUser);
 //   setTokenCookie(res, user);
 //   return res.json({ user });
 // });
+
+//phase-4
 
 module.exports = router;
